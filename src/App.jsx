@@ -20,12 +20,19 @@ function App() {
             }
         });
     }
+    
+    const inputsValid = 
+        userInput.initialInvestment > 0 &&
+        userInput.annualInvestment >= 0 &&
+        userInput.expectedReturn > 0 &&
+        userInput.duration >= 1;
 
     return (
         <>
             <Header />
             <UserInput onChange= {handleChange} userInput={userInput}/>
-            <Results results={userInput} />
+            {!inputsValid && <p className="center">Please Enter Valid Data</p>}
+            {inputsValid && <Results results={userInput} />}
         </>
 
     )
